@@ -28,6 +28,7 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
     private String transcription = "";
     private Intent recognizerIntent;
     private Activity activity;
+    private String strError = "";
 
     /**
      * Plugin registration.
@@ -124,7 +125,7 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
     @Override
     public void onError(int error) {
         Log.d(LOG_TAG, "onError : " + error);
-        String strError = error.toString();
+        strError = error.toString();
         speechChannel.invokeMethod("speech.onSpeechAvailability", false);
         speechChannel.invokeMethod("speech.onError", strError);
     }
