@@ -124,8 +124,9 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
     @Override
     public void onError(int error) {
         Log.d(LOG_TAG, "onError : " + error);
+        String strError = error.toString();
         speechChannel.invokeMethod("speech.onSpeechAvailability", false);
-        speechChannel.invokeMethod("speech.onError", error.toString());
+        speechChannel.invokeMethod("speech.onError", strError);
     }
 
     @Override
