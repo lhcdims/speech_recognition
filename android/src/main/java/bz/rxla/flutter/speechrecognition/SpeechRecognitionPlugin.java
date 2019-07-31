@@ -41,7 +41,7 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
     }
 
     private SpeechRecognitionPlugin(Activity activity, MethodChannel channel) {
-        this.mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        // this.mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         this.speechChannel = channel;
         this.speechChannel.setMethodCallHandler(this);
@@ -72,8 +72,8 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
                 recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, getLocale(call.arguments.toString()));
                 speech.startListening(recognizerIntent);
 
-                mStreamVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC); // getting system volume into var for later un-muting
-                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0); // setting system volume to zero, muting
+//                mStreamVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC); // getting system volume into var for later un-muting
+//                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0); // setting system volume to zero, muting
                 result.success(true);
                 break;
             case "speech.cancel":
@@ -127,7 +127,7 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
     public void onEndOfSpeech() {
         Log.d(LOG_TAG, "onEndOfSpeech");
         // speechChannel.invokeMethod("speech.onRecognitionComplete", transcription);
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mStreamVolume, 0); // again setting the system volume back to the original, un-mutting
+//        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mStreamVolume, 0); // again setting the system volume back to the original, un-mutting
     }
 
     @Override
