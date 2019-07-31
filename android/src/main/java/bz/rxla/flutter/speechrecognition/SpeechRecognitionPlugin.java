@@ -29,7 +29,8 @@ public class SpeechRecognitionPlugin implements MethodCallHandler, RecognitionLi
     private Intent recognizerIntent;
     private Activity activity;
     private String strError = "";
-
+    private AudioManager mAudioManager;
+    private int mStreamVolume = 0;
     /**
      * Plugin registration.
      */
